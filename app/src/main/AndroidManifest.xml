@@ -5,6 +5,7 @@
 
     <dist:module dist:instant="true" />
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
