@@ -1,8 +1,10 @@
 package com.aniketkadam.dogrescuemumbai
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.aniketkadam.dogrescuemumbai.data.Location
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.verify
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.equalTo
 import org.junit.Rule
@@ -15,7 +17,7 @@ class MainVmTest {
 
     @Test
     fun `when the app starts, location is requested if it is not already granted`() {
-        val locationProvider = mockk<LocationProvider> {
+        val locationProvider = mockk<LocationProvider>(relaxed = true) {
             every { isLocationGranted() } returns false
         }
 
@@ -28,9 +30,10 @@ class MainVmTest {
     }
 
     @Test
-    fun `when the app starts, get the current location if the location permission is granted`() {
+    fun `when the app starts, start getting the current location if the location permission is granted`() {
         val locationProvider = mockk<LocationProvider> {
             every { isLocationGranted() } returns true
+            every { getCurrentLocation() } returns Location(1f, 2f)
         }
 
         val mainVm = MainVm(locationProvider)
@@ -39,6 +42,8 @@ class MainVmTest {
             mainVm.viewState.getOrAwaitValue(),
             equalTo<ViewState>(ViewState.LocatingInProgress)
         )
+
+        verify(exactly = 1) { locationProvider.getCurrentLocation() }
     }
 
 
