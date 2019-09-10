@@ -1,6 +1,6 @@
 Animal Rescue Helplines in Mumbai are:
 1. Run by many different organizations.
-2. Each which of operate in their specific areas.
+2. Each of which operate in their specific areas.
 
 It can be difficult to pinpoint exactly which org you need to call to get help for an animal in need.
 
