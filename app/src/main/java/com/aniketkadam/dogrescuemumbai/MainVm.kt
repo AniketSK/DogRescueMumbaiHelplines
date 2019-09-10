@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.aniketkadam.dogrescuemumbai.data.AnimalHelpLine
 
-class MainVm : ViewModel() {
+class MainVm(private val locationProvider: LocationProvider) : ViewModel() {
 
     private val _viewState = MutableLiveData<ViewState>()
 
