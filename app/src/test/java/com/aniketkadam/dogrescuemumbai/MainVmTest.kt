@@ -26,4 +26,20 @@ class MainVmTest {
             equalTo<ViewState>(ViewState.RequestLocationPermission)
         )
     }
+
+    @Test
+    fun `when the app starts, get the current location if the location permission is granted`() {
+        val locationProvider = mockk<LocationProvider> {
+            every { isLocationGranted() } returns true
+        }
+
+        val mainVm = MainVm(locationProvider)
+
+        assertThat(
+            mainVm.viewState.getOrAwaitValue(),
+            equalTo<ViewState>(ViewState.LocatingInProgress)
+        )
+    }
+
+
 }
