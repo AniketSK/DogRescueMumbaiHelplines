@@ -12,7 +12,7 @@ class MainVm(private val locationProvider: LocationProvider) : ViewModel() {
     val viewState: LiveData<ViewState>
         get() = _viewState
 
-    fun getClosestAnimalHelpline() {
+    private fun getClosestAnimalHelpline() {
         // Get a list of all animal helplines
         // Filter the list for the one closest to the current coordinate
         // Set that as the one that should be shown
