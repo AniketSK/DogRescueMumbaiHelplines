@@ -55,4 +55,7 @@ dependencies {
 
     implementation rxjava.lib
     implementation rxjava.android
+
+    testImplementation mockk.lib
+    testImplementation lifecycle.testhelper
 }
