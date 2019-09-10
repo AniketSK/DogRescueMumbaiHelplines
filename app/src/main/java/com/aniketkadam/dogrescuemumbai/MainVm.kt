@@ -18,6 +18,12 @@ class MainVm(private val locationProvider: LocationProvider) : ViewModel() {
         // Set that as the one that should be shown
         // TODO()
     }
+
+    init {
+        _viewState.value =
+            if (locationProvider.isLocationGranted()) ViewState.LocatingInProgress else ViewState.RequestLocationPermission
+    }
+
 }
 
 /**
