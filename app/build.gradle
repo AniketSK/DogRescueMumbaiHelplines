@@ -45,4 +45,14 @@ dependencies {
     implementation gson.lib
     testImplementation hamcrest.lib
     implementation gms.location
+
+    implementation timber.lib
+
+    // Lifecycle/Architecture
+    implementation lifecycle.extensions
+    kapt lifecycle.kotlinCompiler
+    implementation lifecycle.reactivestreams
+
+    implementation rxjava.lib
+    implementation rxjava.android
 }
