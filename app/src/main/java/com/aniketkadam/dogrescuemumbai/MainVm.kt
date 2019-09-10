@@ -21,7 +21,12 @@ class MainVm(private val locationProvider: LocationProvider) : ViewModel() {
 
     init {
         _viewState.value =
-            if (locationProvider.isLocationGranted()) ViewState.LocatingInProgress else ViewState.RequestLocationPermission
+            if (locationProvider.isLocationGranted()) {
+                locationProvider.getCurrentLocation()
+                ViewState.LocatingInProgress
+            } else {
+                ViewState.RequestLocationPermission
+            }
     }
 
 }
