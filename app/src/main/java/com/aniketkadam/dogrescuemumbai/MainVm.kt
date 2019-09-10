@@ -27,7 +27,8 @@ class MainVm(private val locationProvider: LocationProvider) : ViewModel() {
  * 3. Showing the current closest helpline
  */
 sealed class ViewState {
-    object GrantLocationPermission : ViewState()
+    object RequestLocationPermission : ViewState()
+    object LocatingInProgress : ViewState()
     object SeeAllHelpLines : ViewState()
     data class Helpline(val closestLocationHelpLine: AnimalHelpLine)
 }
