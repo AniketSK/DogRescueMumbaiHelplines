@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.aniketkadam.dogrescuemumbai.data.AnimalHelpLine
 
-class MainVm(private val locationProvider: LocationProvider) : ViewModel() {
+class MainVm(private val repository: Repository) : ViewModel() {
 
     private val _viewState = MutableLiveData<ViewState>()
 
@@ -21,8 +21,8 @@ class MainVm(private val locationProvider: LocationProvider) : ViewModel() {
 
     init {
         _viewState.value =
-            if (locationProvider.isLocationGranted()) {
-                locationProvider.getCurrentLocation()
+            if (repository.isLocationGranted()) {
+                repository.getCurrentLocation()
                 ViewState.LocatingInProgress
             } else {
                 ViewState.RequestLocationPermission

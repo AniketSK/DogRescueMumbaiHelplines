@@ -17,11 +17,11 @@ class MainVmTest {
 
     @Test
     fun `when the app starts, location is requested if it is not already granted`() {
-        val locationProvider = mockk<LocationProvider>(relaxed = true) {
+        val repository = mockk<Repository>(relaxed = true) {
             every { isLocationGranted() } returns false
         }
 
-        val mainVm = MainVm(locationProvider)
+        val mainVm = MainVm(repository)
 
         assertThat(
             mainVm.viewState.getOrAwaitValue(),
@@ -31,19 +31,19 @@ class MainVmTest {
 
     @Test
     fun `when the app starts, start getting the current location if the location permission is granted`() {
-        val locationProvider = mockk<LocationProvider> {
+        val repository = mockk<Repository> {
             every { isLocationGranted() } returns true
             every { getCurrentLocation() } returns Location(1f, 2f)
         }
 
-        val mainVm = MainVm(locationProvider)
+        val mainVm = MainVm(repository)
 
         assertThat(
             mainVm.viewState.getOrAwaitValue(),
             equalTo<ViewState>(ViewState.LocatingInProgress)
         )
 
-        verify(exactly = 1) { locationProvider.getCurrentLocation() }
+        verify(exactly = 1) { repository.getCurrentLocation() }
     }
 
 
