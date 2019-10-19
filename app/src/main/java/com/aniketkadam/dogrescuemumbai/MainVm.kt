@@ -26,6 +26,7 @@ class MainVm(private val repository: Repository) : ViewModel() {
                 ViewState.LocatingInProgress
             } else {
                 ViewState.RequestLocationPermission
+
             }
     }
 
