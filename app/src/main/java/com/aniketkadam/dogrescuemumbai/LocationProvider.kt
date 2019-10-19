@@ -4,7 +4,7 @@ import com.aniketkadam.dogrescuemumbai.data.Location
 
 class LocationProvider {
     fun isLocationGranted(): Boolean {
-        TODO()
+        return true
     }
 
     fun getCurrentLocation(): Location {
